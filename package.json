@@ -1,0 +1,14 @@
+{
+    "name": "my-custom-viewer",
+    "version": "1.0.0",
+    "description": "Custom Viewer for Google Slides with dynamic typing animation",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "googleapis": "^105.0.0"
+    }
+  }
+  
