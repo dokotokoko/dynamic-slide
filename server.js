@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // publicフォルダを静的ファイルとして提供
 app.use(express.static(path.join(__dirname, 'public')));
@@ -53,5 +53,5 @@ app.get('/api/slides', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`サーバーが起動しました: http://localhost:${PORT}`);
 });

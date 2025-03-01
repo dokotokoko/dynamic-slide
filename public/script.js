@@ -2,21 +2,38 @@ let slides = [];
 let currentSlideIndex = 0;
 
 // タイピングアニメーションの関数 + タイピング音を再生
-function typeText(text, element, speed = 100) {
+function typeText(text, element, speed = 1000) {
   element.textContent = "";
   let index = 0;
 
-  //入力音のAudioオブジェクトを作成（音声ファイルのパスを指定）
-  const typingSound = new Audio("type-audio.mp3");
+  // 複数の音声ファイルを用意して交互に使用する
+  const typingSoundsFiles = [
+    "Type_sound.mp3",
+    "type_sound_2.mp3",
+    "type_sound_3.mp3",
+    "type_sound_4.mp3"
+  ]
+  
+  const typingSounds = typingSoundsFiles.map(file => new Audio(file));
+
+  typingSounds.forEach(sound => {
+    sound.volume = 0.7;
+  });
 
   return new Promise((resolve) => {
     const interval = setInterval(() => {
       if (index < text.length) {
         element.textContent += text.charAt(index);
 
-        //音声を再生
-        typingSound.currentTime = 0;
-        typingSound.play();
+        //ランダムに効果音を選んで再生
+        if (text.chartAt(index) !== " ")
+        {
+          const randomIndex = Math.floor(Math.random() * typingSounds.length);
+          const randomSound = typingSounds[randomIndex];
+
+          randomSound.currentTime = 0;
+          randomSound.play().catch(err => console.error("Faild to play typing sound. :", err));
+        }
         
         index++;
       } else {
