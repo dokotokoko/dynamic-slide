@@ -2,7 +2,7 @@ let slides = [];
 let currentSlideIndex = 0;
 
 // タイピングアニメーションの関数 + タイピング音を再生
-function typeText(text, element, speed = 1000) {
+function typeText(text, element, speed = 100) {
   element.textContent = "";
   let index = 0;
 
@@ -26,7 +26,7 @@ function typeText(text, element, speed = 1000) {
         element.textContent += text.charAt(index);
 
         //ランダムに効果音を選んで再生
-        if (text.chartAt(index) !== " ")
+        if (text.charAt(index) !== " ")
         {
           const randomIndex = Math.floor(Math.random() * typingSounds.length);
           const randomSound = typingSounds[randomIndex];
@@ -49,7 +49,7 @@ async function showSlide(index) {
   if (index >= 0 && index < slides.length) {
     const slideData = slides[index];
     const slideTextElement = document.getElementById("slide-text");
-    await typeText(slideData.text, slideTextElement, 50);
+    await typeText(slideData.text, slideTextElement, 200);
   }
 }
 
